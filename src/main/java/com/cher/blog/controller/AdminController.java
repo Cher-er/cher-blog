@@ -12,9 +12,9 @@ public class AdminController {
         return "admin/login";
     }
 
-    @RequestMapping("/blog")
+    @RequestMapping("/blogManage")
     public String blog() {
-        return "admin/blog";
+        return "admin/blog-manage";
     }
 
     @RequestMapping("/blogInput")
@@ -22,9 +22,9 @@ public class AdminController {
         return "admin/blog-input";
     }
 
-    @RequestMapping("/type")
+    @RequestMapping("/typeManage")
     public String type() {
-        return "admin/type";
+        return "admin/type-manage";
     }
 
     @RequestMapping("typeInput")
