@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="zh_CN" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="_fragments::head('博客')">
+</head>
+<body>
+
+<!--导航-->
+<nav th:replace="_fragments::menu(0)"></nav>
+
+<!--中间内容-->
+<div class="m-padding-tb-big m-container-small">
+    <div class="ui container">
+        <!--头部信息-->
+        <div class="ui segment top attached">
+            <div class="ui link list horizontal">
+                <div class="item">
+                    <img src="https://picsum.photos/id/1003/100/100" alt="img"
+                         class="ui avatar image">
+                    <div class="content">
+                        <a href="#" class="header m-text">cher</a>
+                    </div>
+                </div>
+                <div class="item">
+                    <i class="icon calender"></i> 2017-10-02
+                </div>
+                <div class="item">
+                    <i class="icon eye">123</i>
+                </div>
+            </div>
+        </div>
+        <!--首图-->
+        <div class="ui attached segment">
+            <img src="https://picsum.photos/id/1003/800/450" alt="img" class="ui fluid image rounded">
+        </div>
+        <!--博客内容-->
+        <div class="ui attached segment padded">
+            <!--博客标题-->
+            <h2 class="ui header center aligned">Spring5概述</h2>
+            <!--博客内容-->
+            <div id="content" class="m-padding-lr-huge-responsive m-padding-tb-large">
+                文章内容……
+            </div>
+            <!--赞赏-->
+            <div class="ui basic segment center aligned">
+                <button id="payButton" class="ui basic circular button orange">赞赏</button>
+            </div>
+            <div class="ui payQR flowing popup transition hidden">
+                <div class="ui orange basic label">
+                    <div class="ui images" style="font-size: inherit !important;">
+                        <div class="image">
+                            <img src="../static/images/money1.jpg" th:src="@{/images/money1.jpg}" alt="img" class="ui image rounded bordered"
+                                 style="width: 120px">
+                            <div>微信</div>
+                        </div>
+                        <div class="image">
+                            <img src="../static/images/money2.jpg" th:src="@{/images/money2.jpg}" alt="img" class="ui image rounded bordered"
+                                 style="width: 120px">
+                            <div>支付宝</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--博客信息-->
+        <div class="ui attached positive message">
+            <div class="ui grid middle aligned">
+                <div class="eleven wide column">
+                    <ul class="list">
+                        <li>作者：Cher（联系作者）</li>
+                        <li>发表时间：2020-10-01</li>
+                        <li>版权声明：自由转载-非商用-非衍生-保持署名</li>
+                        <li>公众号转载：请在文末添加作者公众号二维码</li>
+                    </ul>
+                </div>
+                <div class="five wide column">
+                    <img th:src="@{/images/wechat.png}" alt="img" class="ui rounded bordered image right floated"
+                         style="width: 120px;">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="m-fixed m-bottom-right m-padding-small">
+    <div class="ui vertical icon buttons">
+        <button class="ui qrcode-btn teal icon button m-mobile-hide">手机阅览</button>
+        <button id="toHeader" class="ui teal button"><i class="angle up icon"></i></button>
+    </div>
+</div>
+<!--手机阅览二维码-->
+<div id="qrcode" class="ui flowing popup transition hidden">
+
+</div>
+
+<br>
+<br>
+
+<!--底部-->
+<footer th:replace="_fragments::footer"></footer>
+
+<th:block th:replace="_fragments::script"></th:block>
+
+<script>
+    // 赞赏
+    $("#payButton").popup({
+        popup: $('.payQR.popup'),
+        on: 'click',
+        position: 'bottom center'
+    });
+
+    // 手机阅览二维码
+    $(".qrcode-btn").popup({
+        popup: $('#qrcode.popup'),
+        on: 'click',
+        position: 'left center'
+    });
+    var qrcode = new QRCode("qrcode", {
+        text: window.location.href,
+        width: 100,
+        height: 100,
+        colorDark: "#000000",
+        colorLight: "#ffffff",
+        correctLevel: QRCode.CorrectLevel.H
+    });
+
+    // 返回顶部
+    $("#toHeader").click(function () {
+        $(window).scrollTo(0, 500);
+    });
+
+</script>
+</body>
+</html>

@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="zh_CN" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="_fragments::head('归档')">
+</head>
+<body>
+
+<!--导航-->
+<nav th:replace="_fragments::menu(3)"></nav>
+
+<!--中间内容-->
+<div class="m-padding-tb-big m-container-small">
+    <div class="ui container">
+        <!--header-->
+        <div class="ui segment top attached padded">
+            <div class="ui two column grid middle aligned">
+                <div class="column">
+                    <d3 class="ui teal header">归档</d3>
+                </div>
+                <div class="column right aligned">
+                    共 <h2 class="ui orange header m-inline-block m-text-thin">14</h2> 个
+                </div>
+            </div>
+        </div>
+
+        <!--年份-->
+        <h3 class="ui header center aligned">2021</h3>
+        <!--博客-->
+        <div class="ui vertical menu fluid">
+            <!--一条博客-->
+            <a th:href="@{/blog}" target="_blank" class="item">
+                <span>
+                    <!--博客标题-->
+                    <i class="icon circle small teal"></i>关于可以练习的清单
+                    <!--发布日期-->
+                    <div class="ui teal basic left pointing label m-padding-tiny">9月10日</div>
+                </span>
+                <!--分类-->
+                <div class="ui orange basic label m-padding-tiny">原创</div>
+            </a>
+            <a th:href="@{/blog}" target="_blank" class="item">
+                <span>
+                    <!--博客标题-->
+                    <i class="icon circle small teal"></i>关于可以练习的清单
+                    <!--发布日期-->
+                    <div class="ui teal basic left pointing label m-padding-tiny">9月10日</div>
+                </span>
+                <!--分类-->
+                <div class="ui orange basic label m-padding-tiny">原创</div>
+            </a>
+            <a th:href="@{/blog}" target="_blank" class="item">
+                <span>
+                    <!--博客标题-->
+                    <i class="icon circle small teal"></i>关于可以练习的清单
+                    <!--发布日期-->
+                    <div class="ui teal basic left pointing label m-padding-tiny">9月10日</div>
+                </span>
+                <!--分类-->
+                <div class="ui orange basic label m-padding-tiny">原创</div>
+            </a>
+        </div>
+
+        <!--年份-->
+        <h3 class="ui header center aligned">2020</h3>
+        <!--博客-->
+        <div class="ui vertical menu fluid">
+            <!--一条博客-->
+            <a th:href="@{/blog}" target="_blank" class="item">
+                <span>
+                    <!--博客标题-->
+                    <i class="icon circle small teal"></i>关于可以练习的清单
+                    <!--发布日期-->
+                    <div class="ui teal basic left pointing label m-padding-tiny">9月10日</div>
+                </span>
+                <!--分类-->
+                <div class="ui orange basic label m-padding-tiny">原创</div>
+            </a>
+            <a th:href="@{/blog}" target="_blank" class="item">
+                <span>
+                    <!--博客标题-->
+                    <i class="icon circle small teal"></i>关于可以练习的清单
+                    <!--发布日期-->
+                    <div class="ui teal basic left pointing label m-padding-tiny">9月10日</div>
+                </span>
+                <!--分类-->
+                <div class="ui orange basic label m-padding-tiny">原创</div>
+            </a>
+            <a th:href="@{/blog}" target="_blank" class="item">
+                <span>
+                    <!--博客标题-->
+                    <i class="icon circle small teal"></i>关于可以练习的清单
+                    <!--发布日期-->
+                    <div class="ui teal basic left pointing label m-padding-tiny">9月10日</div>
+                </span>
+                <!--分类-->
+                <div class="ui orange basic label m-padding-tiny">原创</div>
+            </a>
+        </div>
+
+        <!--年份-->
+        <h3 class="ui header center aligned">2019</h3>
+        <!--博客-->
+        <div class="ui vertical menu fluid">
+            <!--一条博客-->
+            <a th:href="@{/blog}" target="_blank" class="item">
+                <span>
+                    <!--博客标题-->
+                    <i class="icon circle small teal"></i>关于可以练习的清单
+                    <!--发布日期-->
+                    <div class="ui teal basic left pointing label m-padding-tiny">9月10日</div>
+                </span>
+                <!--分类-->
+                <div class="ui orange basic label m-padding-tiny">原创</div>
+            </a>
+            <a th:href="@{/blog}" target="_blank" class="item">
+                <span>
+                    <!--博客标题-->
+                    <i class="icon circle small teal"></i>关于可以练习的清单
+                    <!--发布日期-->
+                    <div class="ui teal basic left pointing label m-padding-tiny">9月10日</div>
+                </span>
+                <!--分类-->
+                <div class="ui orange basic label m-padding-tiny">原创</div>
+            </a>
+            <a th:href="@{/blog}" target="_blank" class="item">
+                <span>
+                    <!--博客标题-->
+                    <i class="icon circle small teal"></i>关于可以练习的清单
+                    <!--发布日期-->
+                    <div class="ui teal basic left pointing label m-padding-tiny">9月10日</div>
+                </span>
+                <!--分类-->
+                <div class="ui orange basic label m-padding-tiny">原创</div>
+            </a>
+        </div>
+
+
+    </div>
+</div>
+
+<br>
+<br>
+
+<!--底部-->
+<footer th:replace="_fragments::footer"></footer>
+
+<th:block th:replace="_fragments::script"></th:block>
+
+<script>
+    $(".menu.toggle").click(function () {
+        $(".m-item").toggleClass("m-mobile-hide");
+    });
+</script>
+</body>
+</html>

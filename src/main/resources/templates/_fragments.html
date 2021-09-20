@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="zh_CN" xmlns:th="http://www.thymeleaf.org">
+
+<!--通用head-->
+<head th:fragment="head(title)">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="${title}">Title</title>
+    <link rel="stylesheet" th:href="@{/lib/semantic-ui/semantic.min.css}">
+    <link rel="stylesheet" th:href="@{/css/me.css}">
+    <link rel="stylesheet" th:href="@{/css/typo.css}">
+</head>
+<body>
+
+
+<!--顶部导航-->
+<nav th:fragment="menu(n)" class="ui inverted attached segment m-padding-tb-small m-shadow-small">
+    <div class="ui container">
+        <div class="ui inverted secondary menu stackable">
+            <!--标题-->
+            <h2 class="ui header teal m-margin-lr">Cher's Blog</h2>
+            <!--导航栏-->
+            <a th:href="@{/index}" class="item m-item m-mobile-hide" th:classappend="${n==1}?'active'"><i class="icon home small"></i>首页</a>
+            <a th:href="@{/type}" class="item m-item m-mobile-hide" th:classappend="${n==2}?'active'"><i class="icon idea small"></i>分类</a>
+            <a th:href="@{/archive}" class="item m-item m-mobile-hide" th:classappend="${n==3}?'active'"><i class="icon clone small"></i>归档</a>
+            <a th:href="@{/about}" class="item m-item m-mobile-hide" th:classappend="${n==4}?'active'"><i class="icon info small"></i>关于我</a>
+            <!--搜索框-->
+            <div class="right item m-item m-mobile-hide">
+                <div class="ui icon input">
+                    <input type="text" placeholder="Search...">
+                    <i class="icon search link"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+    <a class="ui menu toggle button icon black m-top-right m-mobile-show">
+        <i class="icon sidebar"></i>
+    </a>
+</nav>
+
+<!--底部-->
+<footer th:fragment="footer" class="ui inverted vertical segment m-padding-tb-massive">
+    <div class="ui container center aligned">
+        <div class="ui grid inverted divided stackable">
+            <!--公众号二维码-->
+            <div class="three wide column">
+                <div class="ui inverted link list">
+                    <div class="item">
+                        <img th:src="@{/images/wechat.png}" class="ui rounded image"
+                             alt="img" style="width: 120px">
+                    </div>
+                </div>
+            </div>
+            <!--最新博客-->
+            <div class="four wide column">
+                <h4 class="ui inverted header m-text-spaced m-text-thin m-opacity-mini">最新博客</h4>
+                <div class="ui inverted link list">
+                    <a href="#" class="item">用户故事（User Story）</a>
+                    <a href="#" class="item">用户故事（User Story）</a>
+                    <a href="#" class="item">用户故事（User Story）</a>
+                </div>
+            </div>
+            <!--联系方式-->
+            <div class="four wide column">
+                <h4 class="ui inverted header m-text-spaced m-text-thin m-opacity-mini">联系我</h4>
+                <div class="ui inverted link list">
+                    <p href="#" class="item">QQ: 859586760</p>
+                    <p href="#" class="item">Email: 859585760@qq.com</p>
+                </div>
+            </div>
+            <!--介绍-->
+            <div class="five wide column">
+                <h4 class="ui inverted header m-text-spaced m-text-thin m-opacity-mini">掰扯掰扯</h4>
+                <p class="m-text-spaced m-text-thin m-opacity-mini">这是我的个人博客，会分享关于编程、写作、思考相关的任何内容，希望可以给来到这儿的人帮助...</p>
+            </div>
+        </div>
+        <div class="ui inserted section divider"></div>
+        <!--版权声明-->
+        <p class="m-text-spaced m-text-thin">
+            <span class="m-inline-block m-opacity-mini">Copyright &copy; 2021-2021 &nbsp;&nbsp;</span>
+            <span class="m-inline-block ui inverted link list">
+                <a href="https://beian.miit.gov.cn" class="item">苏ICP备2021040539号</a>
+            </span>
+        </p>
+    </div>
+
+</footer>
+
+
+<th:block th:fragment="script">
+    <script th:src="@{/js/jquery-3.6.0.min.js}"></script>
+    <script th:src="@{/lib/semantic-ui/semantic.min.js}"></script>
+    <script th:src="@{/js/qrcode.min.js}"></script>
+    <script th:src="@{/js/jquery.scrollTo.min.js}"></script>
+    <script>
+        $(".menu.toggle").click(function () {
+            $(".m-item").toggleClass("m-mobile-hide");
+        });
+    </script>
+</th:block>
+
+</body>
+</html>

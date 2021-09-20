@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="zh_CN" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="_fragments::head('关于我')">
+</head>
+<body>
+
+<!--导航-->
+<nav th:replace="_fragments::menu(4)"></nav>
+
+<!--中间内容-->
+<div class="m-padding-tb-big m-container">
+    <div class="ui container">
+        <div class="ui stackable grid">
+            <!--左侧图片-->
+            <div class="eleven wide column">
+                <div class="ui segment">
+                    <img src="https://picsum.photos/id/1003/800/600" alt="img" class="ui rounded image">
+                </div>
+            </div>
+            <!--右侧信息-->
+            <div class="five wide column">
+                <div class="ui top attached segment">
+                    <div class="ui header">关于我</div>
+                </div>
+                <!--个人描述-->
+                <div class="ui attached segment">
+                    <p class="m-text">到位hi哦我的哈维很大危害到我厚度为偶爱活动i啊问候i的hi哦啊我ioi抵达后i阿黄我的hi哦啊我导航</p>
+                    <p class="m-text">安东i今晚第哦啊位居第哦啊位居第哦啊加我的加递交就第哦啊外交危机嗲军第哦啊我忘记嗲</p>
+                </div>
+                <!--标签-->
+                <div class="ui attached segment">
+                    <div class="ui orange basic label m-margin-tb-tiny">编程</div>
+                    <div class="ui orange basic label m-margin-tb-tiny">思考</div>
+                    <div class="ui orange basic label m-margin-tb-tiny">运动</div>
+                    <div class="ui orange basic label m-margin-tb-tiny">情感</div>
+                </div>
+                <!--技术栈-->
+                <div class="ui attached segment">
+                    <div class="ui teal basic label m-margin-tb-tiny">Java</div>
+                    <div class="ui teal basic label m-margin-tb-tiny">爬虫</div>
+                    <div class="ui teal basic label m-margin-tb-tiny">Web</div>
+                    <div class="ui teal basic label m-margin-tb-tiny">Spring</div>
+                    <div class="ui teal basic label m-margin-tb-tiny">Mybatis</div>
+                    <div class="ui teal basic label m-margin-tb-tiny">Redis</div>
+                    <div class="ui teal basic label m-margin-tb-tiny">Mysql</div>
+                    <div class="ui teal basic label m-margin-tb-tiny">……</div>
+                </div>
+                <!--联系方式-->
+                <!--Github-->
+                <div class="ui bottom attached segment">
+                    <a href="https://github.com/Cher-er" target="_blank" class="ui circular icon button"><i
+                            class="icon github"></i></a>
+                    <a href="javascript:;" class="ui qq circular icon button"><i class="icon qq"></i></a>
+                    <a href="javascript:;" class="ui wechat circular icon button"><i class="icon wechat"></i></a>
+                </div>
+                <!--QQ-->
+                <div class="ui qq flowing popup transition hidden">
+                    <div class="ui orange basic label">
+                        <div class="image">
+                            <img src="../static/images/qq.jpg" th:src="@{/images/qq.jpg}" alt="img" class="ui image rounded bordered"
+                                 style="width: 120px">
+                        </div>
+                    </div>
+                </div>
+                <!--公众号-->
+                <div class="ui wechat flowing popup transition hidden">
+                    <div class="ui orange basic label">
+                        <div class="image">
+                            <img src="../static/images/wechat.png" th:src="@{/images/wechat.png}" alt="img" class="ui image rounded bordered"
+                                 style="width: 120px">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<br>
+<br>
+
+<!--底部-->
+<footer th:replace="_fragments::footer"></footer>
+
+<th:block th:replace="_fragments::script"></th:block>
+
+<script>
+    $("a.qq").popup({
+        popup: $('div.qq.popup'),
+        position: 'bottom center'
+    });
+
+    $("a.wechat").popup({
+        popup: $('div.wechat.popup'),
+        position: 'bottom center'
+    });
+</script>
+</body>
+</html>

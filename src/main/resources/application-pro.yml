@@ -1,0 +1,15 @@
+# 生产环境
+spring:
+  # mysql数据源
+  datasource:
+    url: jdbc:mysql://rm-bp1524h1l34n40kg3wo.mysql.rds.aliyuncs.com:3306/blog?useSSL=false&useUnicode=true&characterEncoding=utf-8
+    username: root
+    password: Wk9s_mxby
+    driver-class-name: com.mysql.jdbc.Driver
+
+server:
+  port: 80  # 服务端口
+
+logging:
+  file:
+    path: log/blog.log  # 日志生成目录

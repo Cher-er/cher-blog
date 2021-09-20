@@ -1,0 +1,10 @@
+spring:
+  profiles:
+    active: dev  # 配置环境
+
+mybatis:
+  mapper-locations: classpath:mybatis/mapper/*.xml  # 映射文件位置
+  configuration:
+    map-underscore-to-camel-case: true  # 驼峰命名规则映射
+    lazy-loading-enabled: true          # 懒加载
+    aggressive-lazy-loading: true       # 懒加载
