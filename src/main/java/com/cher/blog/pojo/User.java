@@ -14,13 +14,17 @@ public class User implements Serializable {
     private String qq;
     private String wechat;
     private String github;
-    private String awatarUrl;
+    private String avatarUrl;
     private String qqQrcodeUrl;
     private String wechatQrcodeUrl;
     private String wechatCollectionCodeUrl;
-    private String aplipayCollectionCodeUrl;
+    private String alipayCollectionCodeUrl;
 
     public User() {
+    }
+
+    public User(Integer id) {
+        this.id = id;
     }
 
     public Integer getId() {
@@ -103,12 +107,13 @@ public class User implements Serializable {
         this.github = github;
     }
 
-    public String getAwatarUrl() {
-        return awatarUrl;
+
+    public String getAvatarUrl() {
+        return avatarUrl;
     }
 
-    public void setAwatarUrl(String awatarUrl) {
-        this.awatarUrl = awatarUrl;
+    public void setAvatarUrl(String avatarUrl) {
+        this.avatarUrl = avatarUrl;
     }
 
     public String getQqQrcodeUrl() {
@@ -135,12 +140,12 @@ public class User implements Serializable {
         this.wechatCollectionCodeUrl = wechatCollectionCodeUrl;
     }
 
-    public String getAplipayCollectionCodeUrl() {
-        return aplipayCollectionCodeUrl;
+    public String getAlipayCollectionCodeUrl() {
+        return alipayCollectionCodeUrl;
     }
 
-    public void setAplipayCollectionCodeUrl(String aplipayCollectionCodeUrl) {
-        this.aplipayCollectionCodeUrl = aplipayCollectionCodeUrl;
+    public void setAlipayCollectionCodeUrl(String alipayCollectionCodeUrl) {
+        this.alipayCollectionCodeUrl = alipayCollectionCodeUrl;
     }
 
     @Override
@@ -156,11 +161,11 @@ public class User implements Serializable {
                 ", qq='" + qq + '\'' +
                 ", wechat='" + wechat + '\'' +
                 ", github='" + github + '\'' +
-                ", awatarUrl='" + awatarUrl + '\'' +
+                ", avatarUrl='" + avatarUrl + '\'' +
                 ", qqQrcodeUrl='" + qqQrcodeUrl + '\'' +
                 ", wechatQrcodeUrl='" + wechatQrcodeUrl + '\'' +
                 ", wechatCollectionCodeUrl='" + wechatCollectionCodeUrl + '\'' +
-                ", aplipayCollectionCodeUrl='" + aplipayCollectionCodeUrl + '\'' +
+                ", alipayCollectionCodeUrl='" + alipayCollectionCodeUrl + '\'' +
                 '}';
     }
 }

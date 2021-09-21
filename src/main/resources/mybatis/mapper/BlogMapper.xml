@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cher.blog.dao.BlogMapper">
+
+    <resultMap id="Blog" type="com.cher.blog.pojo.Blog">
+        <id column="id" property="id"/>
+        <result column="title" property="title"/>
+        <result column="description" property="description"/>
+        <result column="content" property="content"/>
+        <result column="view_count" property="viewCount"/>
+        <result column="pic_url" property="picUrl"/>
+        <result column="recommend" property="recommend"/>
+        <result column="appreciate" property="appreciate"/>
+        <result column="status" property="status"/>
+        <result column="create_time" property="createTime"/>
+        <result column="update_time" property="updateTime"/>
+        <result column="statement" property="statement"/>
+        <association property="user" select="com.cher.blog.dao.UserMapper.getUser" column="user_id"/>
+        <association property="type" select="com.cher.blog.dao.TypeMapper.getType" column="type_id"/>
+    </resultMap>
+
+    <!--Blog getBlog(Integer id);-->
+    <select id="getBlog" resultMap="Blog">
+        select `id`,`title`,`description`,`content`,`view_count`,`pic_url`,`recommend`,`appreciate`,`status`,`create_time`,`update_time`,`statement`,`user_id`,`type_id`
+        from `t_blog`
+        where `id`=#{id};
+    </select>
+
+    <!--List<Blog> getBlogs();-->
+    <select id="getBlogs" resultMap="Blog">
+        select `id`,`title`,`description`,`content`,`view_count`,`pic_url`,`recommend`,`appreciate`,`status`,`create_time`,`update_time`,`statement`,`user_id`,`type_id`
+        from `t_blog`;
+    </select>
+
+    <!--Boolean addBlog(Blog blog);-->
+    <insert id="addBlog" useGeneratedKeys="true" keyProperty="id">
+        insert into `t_blog` (`title`,`description`,`content`,`view_count`,`pic_url`,`recommend`,`appreciate`,`status`,`create_time`,`update_time`,`statement`,`user_id`,`type_id`)
+        values (#{title},#{description},#{content},#{viewCount},#{picUrl},#{recommend},#{appreciate},#{status},#{createTime},#{updateTime},#{statement},#{user.id},#{type.id});
+    </insert>
+
+    <!--Boolean updateBlog(Blog blog);-->
+    <update id="updateBlog">
+        update `t_blog`
+        <set>
+            <if test="title!=null">
+                `title`=#{title},
+            </if>
+            <if test="description!=null">
+                `description`=#{description},
+            </if>
+            <if test="content!=null">
+                `content`=#{content},
+            </if>
+            <if test="viewCount!=null">
+                `view_count`=#{viewCount},
+            </if>
+            <if test="picUrl!=null">
+                `pic_url`=#{picUrl},
+            </if>
+            <if test="recommend!=null">
+                `recommend`=#{recommend},
+            </if>
+            <if test="appreciate!=null">
+                `appreciate`=#{appreciate},
+            </if>
+            <if test="status!=null">
+                `status`=#{status},
+            </if>
+            <if test="createTime!=null">
+                `create_time`=#{createTime},
+            </if>
+            <if test="updateTime!=null">
+                `update_time`=#{updateTime},
+            </if>
+            <if test="statement!=null">
+                `statement`=#{statement},
+            </if>
+            <if test="user!=null">
+                `user_id`=#{user.id},
+            </if>
+            <if test="type!=null">
+                `type_id`=#{type.id}
+            </if>
+        </set>
+        where `id`=#{id};
+    </update>
+
+    <!--Boolean deleteBlog(Integer id);-->
+    <delete id="deleteBlog">
+        delete from `t_blog`
+        where `id`=#{id};
+    </delete>
+
+</mapper>

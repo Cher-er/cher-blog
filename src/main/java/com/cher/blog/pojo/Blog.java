@@ -6,6 +6,7 @@ import java.util.Date;
 public class Blog implements Serializable {
 
     private Integer id;
+    private String title;
     private String description;
     private String content;
     private Integer viewCount;
@@ -15,7 +16,7 @@ public class Blog implements Serializable {
     private Integer status;
     private Date createTime;
     private Date updateTime;
-    private String statement;
+    private Integer statement;
 
     private User user;
     private Type type;
@@ -29,6 +30,14 @@ public class Blog implements Serializable {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public String getDescription() {
@@ -103,11 +112,11 @@ public class Blog implements Serializable {
         this.updateTime = updateTime;
     }
 
-    public String getStatement() {
+    public Integer getStatement() {
         return statement;
     }
 
-    public void setStatement(String statement) {
+    public void setStatement(Integer statement) {
         this.statement = statement;
     }
 
@@ -131,6 +140,7 @@ public class Blog implements Serializable {
     public String toString() {
         return "Blog{" +
                 "id=" + id +
+                ", title='" + title + '\'' +
                 ", description='" + description + '\'' +
                 ", content='" + content + '\'' +
                 ", viewCount=" + viewCount +

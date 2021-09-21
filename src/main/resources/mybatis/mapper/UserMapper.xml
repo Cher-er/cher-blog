@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cher.blog.dao.UserMapper">
+
+    <resultMap id="User" type="com.cher.blog.pojo.User">
+        <id column="id" property="id"/>
+        <result column="username" property="username"/>
+        <result column="password" property="password"/>
+        <result column="nickname" property="nickname"/>
+        <result column="power" property="power"/>
+        <result column="email" property="email"/>
+        <result column="phone" property="phone"/>
+        <result column="qq" property="qq"/>
+        <result column="wechat" property="wechat"/>
+        <result column="github" property="github"/>
+        <result column="avatar_url" property="avatarUrl"/>
+        <result column="qq_qrcode_url" property="qqQrcodeUrl"/>
+        <result column="wechat_qrcode_url" property="wechatQrcodeUrl"/>
+        <result column="wechat_collection_code_url" property="wechatCollectionCodeUrl"/>
+        <result column="alipay_collection_code_url" property="alipayCollectionCodeUrl"/>
+    </resultMap>
+
+    <!--User getUser(Integer id);-->
+    <select id="getUser" resultMap="User">
+        select `id`,`username`,`password`,`nickname`,`power`,`email`,`phone`,`qq`,`wechat`,`github`,`avatar_url`,`qq_qrcode_url`,`wechat_qrcode_url`,`wechat_collection_code_url`,`alipay_collection_code_url`
+        from `t_user`
+        where `id`=#{id};
+    </select>
+
+    <!--User getUserByUsername(String username);-->
+    <select id="getUserByUsername" resultMap="User">
+        select `id`,`username`,`password`,`nickname`,`power`,`email`,`phone`,`qq`,`wechat`,`github`,`avatar_url`,`qq_qrcode_url`,`wechat_qrcode_url`,`wechat_collection_code_url`,`alipay_collection_code_url`
+        from `t_user`
+        where `username`=#{username};
+    </select>
+
+    <!--List<User> getUsersByNickname(String nickname);-->
+    <select id="getUsersByNickname" resultMap="User">
+        select `id`,`username`,`password`,`nickname`,`power`,`email`,`phone`,`qq`,`wechat`,`github`,`avatar_url`,`qq_qrcode_url`,`wechat_qrcode_url`,`wechat_collection_code_url`,`alipay_collection_code_url`
+        from `t_user`
+        where `nickname` like #{nickname};
+    </select>
+
+    <!--List<User> getUsers();-->
+    <select id="getUsers" resultMap="User">
+        select `id`,`username`,`password`,`nickname`,`power`,`email`,`phone`,`qq`,`wechat`,`github`,`avatar_url`,`qq_qrcode_url`,`wechat_qrcode_url`,`wechat_collection_code_url`,`alipay_collection_code_url`
+        from `t_user`;
+    </select>
+
+    <!--Boolean addUser(User user);-->
+    <insert id="addUser" useGeneratedKeys="true" keyProperty="id">
+        insert into `t_user` (`username`,`password`,`nickname`,`power`,`email`,`phone`,`qq`,`wechat`,`github`,`avatar_url`,`qq_qrcode_url`,`wechat_qrcode_url`,`wechat_collection_code_url`,`alipay_collection_code_url`)
+        values (#{username},#{password},#{nickname},#{power},#{email},#{phone},#{qq},#{wechat},#{github},#{avatarUrl},#{qqQrcodeUrl},#{wechatQrcodeUrl},#{wechatCollectionCodeUrl},#{alipayCollectionCodeUrl});
+    </insert>
+
+    <!--Boolean updateUser(User user);-->
+    <update id="updateUser">
+        update `t_user`
+        <set>
+            <if test="username!=null">
+                `username`=#{username},
+            </if>
+            <if test="password!=null">
+                `password`=#{password},
+            </if>
+            <if test="nickname!=null">
+                `nickname`=#{nickname},
+            </if>
+            <if test="power!=null">
+                `power`=#{power},
+            </if>
+            <if test="email!=null">
+                `email`=#{email},
+            </if>
+            <if test="phone!=null">
+                `phone`=#{phone},
+            </if>
+            <if test="qq!=null">
+                `qq`=#{qq},
+            </if>
+            <if test="wechat!=null">
+                `wechat`=#{wechat},
+            </if>
+            <if test="github!=null">
+                `github`=#{github},
+            </if>
+            <if test="avatarUrl!=null">
+                `avatar_url`=#{avatarUrl},
+            </if>
+            <if test="qqQrcodeUrl!=null">
+                `q_qrcode_url`=#{qqQrcodeUrl},
+            </if>
+            <if test="wechatQrcodeUrl!=null">
+                `wechat_qrcode_url`=#{wechatQrcodeUrl},
+            </if>
+            <if test="wechatCollectionCodeUrl!=null">
+                `wechat_collection_code_url`=#{wechatCollectionCodeUrl},
+            </if>
+            <if test="alipayCollectionCodeUrl!=null">
+                `alipay_collection_code_url`=#{alipayCollectionCodeUrl}
+            </if>
+        </set>
+        where `id`=#{id};
+    </update>
+
+    <!--Boolean deleteUser(Integer id);-->
+    <delete id="deleteUser">
+        delete from `t_user`
+        where `id`=#{id};
+    </delete>
+
+</mapper>

@@ -10,6 +10,10 @@ public class Type implements Serializable {
     public Type() {
     }
 
+    public Type(Integer id) {
+        this.id = id;
+    }
+
     public Integer getId() {
         return id;
     }
