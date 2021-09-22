@@ -9,30 +9,36 @@
         <result column="name" property="name"/>
     </resultMap>
 
+    <!--Integer getCount();-->
+    <select id="getCount" resultType="int">
+        select count(*)
+        from `t_type`
+    </select>
+
     <!--Type getType(Integer id);-->
     <select id="getType" resultMap="Type">
         select `id`,`name`
         from `t_type`
-        where `id`=#{id};
+        where `id`=#{id}
     </select>
 
     <!--Type getTypeByName(String name);-->
     <select id="getTypeByName" resultMap="Type">
         select `id`,`name`
         from `t_type`
-        where `name`=#{name};
+        where `name`=#{name}
     </select>
 
     <!--List<Type> getTypes();-->
     <select id="getTypes" resultMap="Type">
         select `id`,`name`
-        from `t_type`;
+        from `t_type`
     </select>
 
     <!--Boolean addType(Type type);-->
     <insert id="addType" useGeneratedKeys="true" keyProperty="id">
         insert into `t_type`(`name`)
-        values (#{name});
+        values (#{name})
     </insert>
 
     <!--Boolean updateType(Type type);-->
@@ -43,13 +49,13 @@
                 `name`=#{name}
             </if>
         </set>
-        where `id`=#{id};
+        where `id`=#{id}
     </update>
 
     <!--Boolean deleteType(Integer id);-->
     <delete id="deleteType">
         delete from `t_type`
-        where `id`=#{id};
+        where `id`=#{id}
     </delete>
 
 </mapper>

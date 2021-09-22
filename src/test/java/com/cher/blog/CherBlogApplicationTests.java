@@ -6,13 +6,12 @@ import com.cher.blog.dao.UserMapper;
 import com.cher.blog.pojo.Blog;
 import com.cher.blog.pojo.Type;
 import com.cher.blog.pojo.User;
-import org.junit.jupiter.api.Disabled;
+import com.cher.blog.service.TypeService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
 import java.util.List;
@@ -170,6 +169,22 @@ class CherBlogApplicationTests {
             }
 
             @Test
+            void getBlogsByTypeId() {
+                List<Blog> blogs = blogMapper.getBlogsByTypeId(1);
+                for (Blog blog : blogs) {
+                    System.out.println("Blog => " + blog);
+                }
+            }
+
+            @Test
+            void getBlogsByUserId() {
+                List<Blog> blogs = blogMapper.getBlogsByUserId(1);
+                for (Blog blog : blogs) {
+                    System.out.println("Blog => " + blog);
+                }
+            }
+
+            @Test
             void addBlog() {
                 Blog blog = new Blog();
                 blog.setTitle("初识MySQL");
@@ -209,6 +224,35 @@ class CherBlogApplicationTests {
                 Boolean res = blogMapper.deleteBlog(2);
                 System.out.println("res => " + res);
             }
+        }
+
+    }
+
+    @DisplayName("Service Test")
+    @Nested
+    class ServiceTest {
+
+        @DisplayName("TypeService Test")
+        @Nested
+        class TypeServiceTest {
+
+            @Autowired
+            TypeService typeService;
+
+            @Test
+            void getTypes() {
+                List<Type> types = typeService.getTypes();
+                System.out.println("Size => " + types.size());
+            }
+
+            @Test
+            void getTypesByPage() {
+                List<Type> types = typeService.getTypesByPage(2, 2);
+                for (Type type : types) {
+                    System.out.println(type);
+                }
+            }
+
         }
 
     }

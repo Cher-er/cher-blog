@@ -2,19 +2,20 @@ package com.cher.blog.dao;
 
 import com.cher.blog.pojo.User;
 import org.apache.ibatis.annotations.Mapper;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
 @Mapper
-@RequestMapping
+@Repository
 public interface UserMapper {
 
-    User getUser(Integer id);
+    User getUser(@Param("id") Integer id);
 
-    User getUserByUsername(String username);
+    User getUserByUsername(@Param("username") String username);
 
-    List<User> getUsersByNickname(String nickname);
+    List<User> getUsersByNickname(@Param("nickname") String nickname);
 
     List<User> getUsers();
 
@@ -22,6 +23,6 @@ public interface UserMapper {
 
     Boolean updateUser(User user);
 
-    Boolean deleteUser(Integer id);
+    Boolean deleteUser(@Param("id") Integer id);
 
 }

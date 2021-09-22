@@ -10,7 +10,7 @@
 <body>
 
 <section>
-    <form action="">
+    <form th:action="@{/admin/doLogin}" method="post">
         <h2>Login</h2>
         <input type="text" placeholder="用户名" name="username">
         <input type="password" placeholder="密码" name="password">
@@ -19,6 +19,12 @@
         </div>
     </form>
 </section>
+
+<script th:inline="javascript">
+    if ([[${message}]]) {
+        alert([[${message}]]);
+    }
+</script>
 
 </body>
 </html>

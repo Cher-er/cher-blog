@@ -32,11 +32,6 @@ public class LogAspect {
         logger.info("Request: {}", requestLog);
     }
 
-    @After("log()")
-    public void doAfter() {
-        logger.info("====doAfter====");
-    }
-
     @AfterReturning(value = "log()", returning = "result")
     public void doAfterReturning(Object result) {
         logger.info("Result: {}", result);

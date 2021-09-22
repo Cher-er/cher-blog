@@ -2,21 +2,28 @@ package com.cher.blog.dao;
 
 import com.cher.blog.pojo.Blog;
 import org.apache.ibatis.annotations.Mapper;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
 @Mapper
-@RequestMapping
+@Repository
 public interface BlogMapper {
 
-    Blog getBlog(Integer id);
+    Integer getCount();
+
+    Blog getBlog(@Param("id") Integer id);
 
     List<Blog> getBlogs();
+
+    List<Blog> getBlogsByTypeId(@Param("typeId") Integer typeId);
+
+    List<Blog> getBlogsByUserId(@Param("userId") Integer userId);
 
     Boolean addBlog(Blog blog);
 
     Boolean updateBlog(Blog blog);
 
-    Boolean deleteBlog(Integer id);
+    Boolean deleteBlog(@Param("id") Integer id);
 }

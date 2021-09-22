@@ -28,12 +28,12 @@
             </thead>
             <!--表体-->
             <tbody>
-            <tr>
-                <td>1</td>
-                <td>认知升级</td>
+            <tr th:each="type:${types}">
+                <td th:text="${type.id}"></td>
+                <td th:text="${type.name}"></td>
                 <td>
-                    <a href="#" class="ui mini teal basic button">编辑</a>
-                    <a href="#" class="ui mini red basic button">删除</a>
+                    <a th:href="@{/admin/typeUpdate(id=${type.id})}" class="ui mini teal basic button">编辑</a>
+                    <a th:href="@{/admin/doTypeDelete(id=${type.id})}" class="ui mini red basic button">删除</a>
                 </td>
             </tr>
             </tbody>
@@ -44,15 +44,13 @@
                     <!--翻页-->
                     <div class="ui mini pagination menu">
                         <!--上一页-->
-                        <a class="icon item">
+                        <a th:if="${offset}>1" th:href="${offset}-1" class="icon item">
                             <i class="left chevron icon"></i>
                         </a>
-                        <a class="item">1</a>
-                        <a class="item">2</a>
-                        <a class="item">3</a>
-                        <a class="item">4</a>
+                        <!--中间翻页部分-->
+                        <a class="item" th:each="page:${pages}" th:text="${page}" th:href="${page}"></a>
                         <!--下一页-->
-                        <a class="icon item">
+                        <a th:if="${offset}<${maxPage}" th:href="${offset}+1" class="icon item">
                             <i class="right chevron icon"></i>
                         </a>
                     </div>
@@ -80,6 +78,7 @@
     $('.message .close').on('click', function () {
         $(this).closest('.message').transition('fade');
     })
+
 </script>
 </body>
 </html>

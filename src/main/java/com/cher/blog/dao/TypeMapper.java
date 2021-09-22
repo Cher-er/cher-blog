@@ -2,17 +2,20 @@ package com.cher.blog.dao;
 
 import com.cher.blog.pojo.Type;
 import org.apache.ibatis.annotations.Mapper;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
 @Mapper
-@RequestMapping
+@Repository
 public interface TypeMapper {
 
-    Type getType(Integer id);
+    Integer getCount();
 
-    Type getTypeByName(String name);
+    Type getType(@Param("id") Integer id);
+
+    Type getTypeByName(@Param("name") String name);
 
     List<Type> getTypes();
 
@@ -20,6 +23,6 @@ public interface TypeMapper {
 
     Boolean updateType(Type type);
 
-    Boolean deleteType(Integer id);
+    Boolean deleteType(@Param("id") Integer id);
 
 }

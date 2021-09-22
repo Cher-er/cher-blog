@@ -21,23 +21,43 @@
         <association property="type" select="com.cher.blog.dao.TypeMapper.getType" column="type_id"/>
     </resultMap>
 
+    <!--Integer getCount();-->
+    <select id="getCount" resultType="int">
+        select count(*)
+        from `t_blog`
+    </select>
+
     <!--Blog getBlog(Integer id);-->
     <select id="getBlog" resultMap="Blog">
         select `id`,`title`,`description`,`content`,`view_count`,`pic_url`,`recommend`,`appreciate`,`status`,`create_time`,`update_time`,`statement`,`user_id`,`type_id`
         from `t_blog`
-        where `id`=#{id};
+        where `id`=#{id}
     </select>
 
     <!--List<Blog> getBlogs();-->
     <select id="getBlogs" resultMap="Blog">
         select `id`,`title`,`description`,`content`,`view_count`,`pic_url`,`recommend`,`appreciate`,`status`,`create_time`,`update_time`,`statement`,`user_id`,`type_id`
-        from `t_blog`;
+        from `t_blog`
+    </select>
+
+    <!--List<Blog> getBlogsByTypeId(@Param("typeId") Integer typeId);-->
+    <select id="getBlogsByTypeId" resultMap="Blog">
+        select `id`,`title`,`description`,`content`,`view_count`,`pic_url`,`recommend`,`appreciate`,`status`,`create_time`,`update_time`,`statement`,`user_id`,`type_id`
+        from `t_blog`
+        where `type_id`=#{typeId}
+    </select>
+
+    <!--List<Blog> getBlogsByUserId(@Param("userId") Integer userId);-->
+    <select id="getBlogsByUserId" resultMap="Blog">
+        select `id`,`title`,`description`,`content`,`view_count`,`pic_url`,`recommend`,`appreciate`,`status`,`create_time`,`update_time`,`statement`,`user_id`,`type_id`
+        from `t_blog`
+        where `user_id`=#{userId}
     </select>
 
     <!--Boolean addBlog(Blog blog);-->
     <insert id="addBlog" useGeneratedKeys="true" keyProperty="id">
         insert into `t_blog` (`title`,`description`,`content`,`view_count`,`pic_url`,`recommend`,`appreciate`,`status`,`create_time`,`update_time`,`statement`,`user_id`,`type_id`)
-        values (#{title},#{description},#{content},#{viewCount},#{picUrl},#{recommend},#{appreciate},#{status},#{createTime},#{updateTime},#{statement},#{user.id},#{type.id});
+        values (#{title},#{description},#{content},#{viewCount},#{picUrl},#{recommend},#{appreciate},#{status},#{createTime},#{updateTime},#{statement},#{user.id},#{type.id})
     </insert>
 
     <!--Boolean updateBlog(Blog blog);-->
@@ -84,13 +104,13 @@
                 `type_id`=#{type.id}
             </if>
         </set>
-        where `id`=#{id};
+        where `id`=#{id}
     </update>
 
     <!--Boolean deleteBlog(Integer id);-->
     <delete id="deleteBlog">
         delete from `t_blog`
-        where `id`=#{id};
+        where `id`=#{id}
     </delete>
 
 </mapper>
