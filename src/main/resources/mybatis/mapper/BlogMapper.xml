@@ -27,6 +27,14 @@
         from `t_blog`
     </select>
 
+    <!--Integer getCountByTypeId(@Param("typeId") Integer typeId);-->
+    <select id="getCountByTypeId" resultType="int">
+        SELECT COUNT(*)
+        FROM `t_type` AS `t`,`t_blog` AS `b`
+        WHERE `t`.`id`=`b`.`type_id`
+        AND `t`.`id`=#{typeId}
+    </select>
+
     <!--Blog getBlog(Integer id);-->
     <select id="getBlog" resultMap="Blog">
         select `id`,`title`,`description`,`content`,`view_count`,`pic_url`,`recommend`,`appreciate`,`status`,`create_time`,`update_time`,`statement`,`user_id`,`type_id`
@@ -38,6 +46,7 @@
     <select id="getBlogs" resultMap="Blog">
         select `id`,`title`,`description`,`content`,`view_count`,`pic_url`,`recommend`,`appreciate`,`status`,`create_time`,`update_time`,`statement`,`user_id`,`type_id`
         from `t_blog`
+        order by `id` desc
     </select>
 
     <!--List<Blog> getBlogsByTypeId(@Param("typeId") Integer typeId);-->
@@ -45,6 +54,7 @@
         select `id`,`title`,`description`,`content`,`view_count`,`pic_url`,`recommend`,`appreciate`,`status`,`create_time`,`update_time`,`statement`,`user_id`,`type_id`
         from `t_blog`
         where `type_id`=#{typeId}
+        order by `id` desc
     </select>
 
     <!--List<Blog> getBlogsByUserId(@Param("userId") Integer userId);-->
@@ -52,6 +62,22 @@
         select `id`,`title`,`description`,`content`,`view_count`,`pic_url`,`recommend`,`appreciate`,`status`,`create_time`,`update_time`,`statement`,`user_id`,`type_id`
         from `t_blog`
         where `user_id`=#{userId}
+        order by `id` desc
+    </select>
+
+    <!--List<Blog> getBlogsByRecommend();-->
+    <select id="getBlogsByRecommend" resultMap="Blog">
+        select `id`,`title`,`description`,`content`,`view_count`,`pic_url`,`recommend`,`appreciate`,`status`,`create_time`,`update_time`,`statement`,`user_id`,`type_id`
+        from `t_blog`
+        where `recommend`=1
+        order by `id` desc;
+    </select>
+
+    <!--    List<Blog> getBlogsByYear(@Param("startTime") String startTime, @Param("endTime") String endTime);-->
+    <select id="getBlogsByYear" resultMap="Blog">
+        select `id`,`title`,`description`,`content`,`view_count`,`pic_url`,`recommend`,`appreciate`,`status`,`create_time`,`update_time`,`statement`,`user_id`,`type_id`
+        from `t_blog`
+        where `create_time` between #{startTime} and #{endTime}
     </select>
 
     <!--Boolean addBlog(Blog blog);-->

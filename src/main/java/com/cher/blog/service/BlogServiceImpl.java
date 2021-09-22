@@ -20,8 +20,18 @@ public class BlogServiceImpl implements BlogService {
     }
 
     @Override
+    public Integer getCountByTypeId(Integer typeId) {
+        return blogMapper.getCountByTypeId(typeId);
+    }
+
+    @Override
     public Blog getBlog(Integer id) {
         return blogMapper.getBlog(id);
+    }
+
+    @Override
+    public List<Blog> getBlogsByTypeId(Integer typeId) {
+        return blogMapper.getBlogsByTypeId(typeId);
     }
 
     @Override
@@ -34,6 +44,25 @@ public class BlogServiceImpl implements BlogService {
         PageHelper.startPage(offset, limit);
         List<Blog> blogs = blogMapper.getBlogs();
         return blogs;
+    }
+
+    @Override
+    public List<Blog> getBlogsByNew(Integer limit) {
+        PageHelper.startPage(1, limit);
+        List<Blog> blogs = blogMapper.getBlogs();
+        return blogs;
+    }
+
+    @Override
+    public List<Blog> getBlogsByRecommend() {
+        return blogMapper.getBlogsByRecommend();
+    }
+
+    @Override
+    public List<Blog> getBlogsByYear(String year) {
+        String startTime = year + "-01-01";
+        String endTime = year + "-12-31";
+        return blogMapper.getBlogsByYear(startTime, endTime);
     }
 
     @Override

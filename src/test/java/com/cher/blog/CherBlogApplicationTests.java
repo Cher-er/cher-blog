@@ -5,8 +5,13 @@ import com.cher.blog.dao.TypeMapper;
 import com.cher.blog.dao.UserMapper;
 import com.cher.blog.pojo.Blog;
 import com.cher.blog.pojo.Type;
+import com.cher.blog.pojo.TypeWithCount;
 import com.cher.blog.pojo.User;
+import com.cher.blog.service.BlogService;
 import com.cher.blog.service.TypeService;
+import org.commonmark.node.Node;
+import org.commonmark.parser.Parser;
+import org.commonmark.renderer.html.HtmlRenderer;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
@@ -47,6 +52,14 @@ class CherBlogApplicationTests {
                 List<Type> types = typeMapper.getTypes();
                 for (Type type : types) {
                     System.out.println(type);
+                }
+            }
+
+            @Test
+            void getTypesWithCount() {
+                List<TypeWithCount> typesWithCount = typeMapper.getTypesWithCount();
+                for (TypeWithCount typeWithCount : typesWithCount) {
+                    System.out.println(typeWithCount);
                 }
             }
 
@@ -224,6 +237,14 @@ class CherBlogApplicationTests {
                 Boolean res = blogMapper.deleteBlog(2);
                 System.out.println("res => " + res);
             }
+
+            @Test
+            void getBlogsByYear() {
+                List<Blog> blogs = blogMapper.getBlogsByYear("2021-01-01", "2021-12-31");
+                for (Blog blog : blogs) {
+                    System.out.println(blog);
+                }
+            }
         }
 
     }
@@ -253,6 +274,45 @@ class CherBlogApplicationTests {
                 }
             }
 
+        }
+
+        @DisplayName("BlogService Test")
+        @Nested
+        class BlogServiceTest {
+
+            @Autowired
+            BlogService blogService;
+
+            @Test
+            void getBlogsByYear() {
+                List<Blog> blogs = blogService.getBlogsByYear("2021");
+                for (Blog blog : blogs) {
+                    System.out.println(blog);
+                }
+            }
+
+        }
+
+    }
+
+    @DisplayName("CommonMark Test")
+    @Nested
+    class CommonMarkTest {
+
+        @Autowired
+        BlogService blogService;
+
+        @Test
+        void test() {
+            Blog blog = blogService.getBlog(1);
+            String content = blog.getContent();
+            System.out.println(content);
+
+            Parser parser = Parser.builder().build();
+            Node document = parser.parse(content);
+            HtmlRenderer renderer = HtmlRenderer.builder().build();
+            String render = renderer.render(document);
+            System.out.println(render);
         }
 
     }

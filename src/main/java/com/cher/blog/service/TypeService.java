@@ -1,6 +1,7 @@
 package com.cher.blog.service;
 
 import com.cher.blog.pojo.Type;
+import com.cher.blog.pojo.TypeWithCount;
 
 import java.util.List;
 
@@ -13,6 +14,8 @@ public interface TypeService {
     Type getTypeByName(String name);
 
     List<Type> getTypes();
+
+    List<TypeWithCount> getTypesWithCount();
 
     List<Type> getTypesByPage(Integer offset, Integer limit);
 

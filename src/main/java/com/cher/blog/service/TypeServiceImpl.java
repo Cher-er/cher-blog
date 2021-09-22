@@ -2,6 +2,7 @@ package com.cher.blog.service;
 
 import com.cher.blog.dao.TypeMapper;
 import com.cher.blog.pojo.Type;
+import com.cher.blog.pojo.TypeWithCount;
 import com.github.pagehelper.PageHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -32,6 +33,11 @@ public class TypeServiceImpl implements TypeService {
     @Override
     public List<Type> getTypes() {
         return typeMapper.getTypes();
+    }
+
+    @Override
+    public List<TypeWithCount> getTypesWithCount() {
+        return typeMapper.getTypesWithCount();
     }
 
     @Override

@@ -13,6 +13,8 @@ public interface BlogMapper {
 
     Integer getCount();
 
+    Integer getCountByTypeId(@Param("typeId") Integer typeId);
+
     Blog getBlog(@Param("id") Integer id);
 
     List<Blog> getBlogs();
@@ -20,6 +22,11 @@ public interface BlogMapper {
     List<Blog> getBlogsByTypeId(@Param("typeId") Integer typeId);
 
     List<Blog> getBlogsByUserId(@Param("userId") Integer userId);
+
+    List<Blog> getBlogsByRecommend();
+
+    List<Blog> getBlogsByYear(@Param("startTime") String startTime,
+                              @Param("endTime") String endTime);
 
     Boolean addBlog(Blog blog);
 

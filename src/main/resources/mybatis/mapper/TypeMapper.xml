@@ -34,6 +34,17 @@
         select `id`,`name`
         from `t_type`
     </select>
+    
+    <!--List<TypeWithCount> getTypesWithCount();-->
+    <resultMap id="TypeWithCount" type="com.cher.blog.pojo.TypeWithCount">
+        <id column="id" property="id"/>
+        <result column="name" property="name"/>
+        <association property="count" select="com.cher.blog.dao.BlogMapper.getCountByTypeId" column="id"/>
+    </resultMap>
+    <select id="getTypesWithCount" resultMap="TypeWithCount">
+        select `id`,`name`
+        from `t_type`;
+    </select>
 
     <!--Boolean addType(Type type);-->
     <insert id="addType" useGeneratedKeys="true" keyProperty="id">

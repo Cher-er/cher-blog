@@ -17,121 +17,33 @@
                     <d3 class="ui teal header">归档</d3>
                 </div>
                 <div class="column right aligned">
-                    共 <h2 class="ui orange header m-inline-block m-text-thin">14</h2> 个
+                    共 <h2 class="ui orange header m-inline-block m-text-thin">[[${count}]]</h2> 篇
                 </div>
             </div>
         </div>
 
-        <!--年份-->
-        <h3 class="ui header center aligned">2021</h3>
-        <!--博客-->
-        <div class="ui vertical menu fluid">
-            <!--一条博客-->
-            <a th:href="@{/blog}" target="_blank" class="item">
-                <span>
-                    <!--博客标题-->
-                    <i class="icon circle small teal"></i>关于可以练习的清单
-                    <!--发布日期-->
-                    <div class="ui teal basic left pointing label m-padding-tiny">9月10日</div>
-                </span>
-                <!--分类-->
-                <div class="ui orange basic label m-padding-tiny">原创</div>
-            </a>
-            <a th:href="@{/blog}" target="_blank" class="item">
-                <span>
-                    <!--博客标题-->
-                    <i class="icon circle small teal"></i>关于可以练习的清单
-                    <!--发布日期-->
-                    <div class="ui teal basic left pointing label m-padding-tiny">9月10日</div>
-                </span>
-                <!--分类-->
-                <div class="ui orange basic label m-padding-tiny">原创</div>
-            </a>
-            <a th:href="@{/blog}" target="_blank" class="item">
-                <span>
-                    <!--博客标题-->
-                    <i class="icon circle small teal"></i>关于可以练习的清单
-                    <!--发布日期-->
-                    <div class="ui teal basic left pointing label m-padding-tiny">9月10日</div>
-                </span>
-                <!--分类-->
-                <div class="ui orange basic label m-padding-tiny">原创</div>
-            </a>
-        </div>
-
-        <!--年份-->
-        <h3 class="ui header center aligned">2020</h3>
-        <!--博客-->
-        <div class="ui vertical menu fluid">
-            <!--一条博客-->
-            <a th:href="@{/blog}" target="_blank" class="item">
-                <span>
-                    <!--博客标题-->
-                    <i class="icon circle small teal"></i>关于可以练习的清单
-                    <!--发布日期-->
-                    <div class="ui teal basic left pointing label m-padding-tiny">9月10日</div>
-                </span>
-                <!--分类-->
-                <div class="ui orange basic label m-padding-tiny">原创</div>
-            </a>
-            <a th:href="@{/blog}" target="_blank" class="item">
-                <span>
-                    <!--博客标题-->
-                    <i class="icon circle small teal"></i>关于可以练习的清单
-                    <!--发布日期-->
-                    <div class="ui teal basic left pointing label m-padding-tiny">9月10日</div>
-                </span>
-                <!--分类-->
-                <div class="ui orange basic label m-padding-tiny">原创</div>
-            </a>
-            <a th:href="@{/blog}" target="_blank" class="item">
-                <span>
-                    <!--博客标题-->
-                    <i class="icon circle small teal"></i>关于可以练习的清单
-                    <!--发布日期-->
-                    <div class="ui teal basic left pointing label m-padding-tiny">9月10日</div>
-                </span>
-                <!--分类-->
-                <div class="ui orange basic label m-padding-tiny">原创</div>
-            </a>
-        </div>
-
-        <!--年份-->
-        <h3 class="ui header center aligned">2019</h3>
-        <!--博客-->
-        <div class="ui vertical menu fluid">
-            <!--一条博客-->
-            <a th:href="@{/blog}" target="_blank" class="item">
-                <span>
-                    <!--博客标题-->
-                    <i class="icon circle small teal"></i>关于可以练习的清单
-                    <!--发布日期-->
-                    <div class="ui teal basic left pointing label m-padding-tiny">9月10日</div>
-                </span>
-                <!--分类-->
-                <div class="ui orange basic label m-padding-tiny">原创</div>
-            </a>
-            <a th:href="@{/blog}" target="_blank" class="item">
-                <span>
-                    <!--博客标题-->
-                    <i class="icon circle small teal"></i>关于可以练习的清单
-                    <!--发布日期-->
-                    <div class="ui teal basic left pointing label m-padding-tiny">9月10日</div>
-                </span>
-                <!--分类-->
-                <div class="ui orange basic label m-padding-tiny">原创</div>
-            </a>
-            <a th:href="@{/blog}" target="_blank" class="item">
-                <span>
-                    <!--博客标题-->
-                    <i class="icon circle small teal"></i>关于可以练习的清单
-                    <!--发布日期-->
-                    <div class="ui teal basic left pointing label m-padding-tiny">9月10日</div>
-                </span>
-                <!--分类-->
-                <div class="ui orange basic label m-padding-tiny">原创</div>
-            </a>
-        </div>
+        <th:block th:each="item:${map}">
+            <!--年份-->
+            <h3 class="ui header center aligned" th:text="${item.key}"></h3>
+            <!--博客-->
+            <div class="ui vertical menu fluid">
+                <!--一条博客-->
+                <a th:href="@{/blog}" target="_blank" class="item" th:each="blog:${item.value}">
+                    <span>
+                        <!--博客标题-->
+                        <i class="icon circle small teal"></i>[[${blog.title}]]
+                        <!--发布日期-->
+                        <div class="ui teal basic left pointing label m-padding-tiny">[[${#dates.format(blog.createTime,"yyyy-MM-dd")}]]</div>
+                    </span>
+                    <!--分类-->
+                    <th:block th:switch="${blog.statement}">
+                        <div class="ui orange basic label m-padding-tiny" th:case="1">原创</div>
+                        <div class="ui orange basic label m-padding-tiny" th:case="1">转载</div>
+                        <div class="ui orange basic label m-padding-tiny" th:case="1">翻译</div>
+                    </th:block>
+                </a>
+            </div>
+        </th:block>
 
 
     </div>

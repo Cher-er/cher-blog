@@ -1,6 +1,7 @@
 package com.cher.blog.dao;
 
 import com.cher.blog.pojo.Type;
+import com.cher.blog.pojo.TypeWithCount;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
@@ -18,6 +19,8 @@ public interface TypeMapper {
     Type getTypeByName(@Param("name") String name);
 
     List<Type> getTypes();
+
+    List<TypeWithCount> getTypesWithCount();
 
     Boolean addType(Type type);
 

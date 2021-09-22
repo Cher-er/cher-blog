@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="zh_CN" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="_fragments::head('博客')">
+<head th:replace="_fragments::head(${blog.title})">
 </head>
 <body>
 
@@ -14,35 +14,39 @@
         <div class="ui segment top attached">
             <div class="ui link list horizontal">
                 <div class="item">
-                    <img src="https://picsum.photos/id/1003/100/100" alt="img"
+                    <img th:src="${user.avatarUrl}" alt="img"
                          class="ui avatar image">
                     <div class="content">
-                        <a href="#" class="header m-text">cher</a>
+                        <a href="javascript:;" class="header m-text" th:text="${user.nickname}"></a>
                     </div>
                 </div>
                 <div class="item">
-                    <i class="icon calender"></i> 2017-10-02
+                    <i class="icon calender"></i>[[${#dates.format(blog.createTime,'yyyy-MM-dd')}]]
                 </div>
                 <div class="item">
-                    <i class="icon eye">123</i>
+                    <i class="icon eye" th:text="${blog.viewCount}"></i>
                 </div>
             </div>
         </div>
         <!--首图-->
         <div class="ui attached segment">
-            <img src="https://picsum.photos/id/1003/800/450" alt="img" class="ui fluid image rounded">
+            <img th:src="${blog.picUrl}" alt="img" class="ui fluid image rounded">
         </div>
         <!--博客内容-->
         <div class="ui attached segment padded">
             <!--博客标题-->
-            <h2 class="ui header center aligned">Spring5概述</h2>
+            <h2 class="ui header center aligned" th:text="${blog.title}"></h2>
             <!--博客声明：原创、转载、翻译-->
             <div class="ui basic segment right aligned">
-                <label class="ui orange basic label">原创</label>
+                <label class="ui orange basic label" th:switch="${blog.statement}">
+                    <th:block th:case="1">原创</th:block>
+                    <th:block th:case="2">转载</th:block>
+                    <th:block th:case="3">翻译</th:block>
+                </label>
             </div>
             <!--博客内容-->
-            <div id="content" class="m-padding-lr-huge-responsive m-padding-tb-large">
-                文章内容……
+            <div id="content" class="typo m-padding-lr-huge-responsive m-padding-tb-large">
+                [(${content})]
             </div>
             <!--赞赏-->
             <div class="ui basic segment center aligned">
@@ -52,12 +56,12 @@
                 <div class="ui orange basic label">
                     <div class="ui images" style="font-size: inherit !important;">
                         <div class="image">
-                            <img src="../static/images/money1.jpg" th:src="@{/images/money1.jpg}" alt="img" class="ui image rounded bordered"
+                            <img src="../static/images/archive/money1.jpg" th:src="${user.wechatCollectionCodeUrl}" alt="img" class="ui image rounded bordered"
                                  style="width: 120px">
                             <div>微信</div>
                         </div>
                         <div class="image">
-                            <img src="../static/images/money2.jpg" th:src="@{/images/money2.jpg}" alt="img" class="ui image rounded bordered"
+                            <img src="../static/images/archive/money2.jpg" th:src="${user.alipayCollectionCodeUrl}" alt="img" class="ui image rounded bordered"
                                  style="width: 120px">
                             <div>支付宝</div>
                         </div>
@@ -70,14 +74,14 @@
             <div class="ui grid middle aligned">
                 <div class="eleven wide column">
                     <ul class="list">
-                        <li>作者：Cher（联系作者）</li>
-                        <li>发表时间：2020-10-01</li>
+                        <li>作者：[[${user.nickname}]]</li>
+                        <li>发表时间：[[${#dates.format(blog.createTime,'yyyy-MM-dd')}]]</li>
                         <li>版权声明：自由转载-非商用-非衍生-保持署名</li>
-                        <li>公众号转载：请在文末添加作者公众号二维码</li>
+                        <li>公众号转载：请在文末添加本站网址(http://cher.top)及公众号二维码</li>
                     </ul>
                 </div>
                 <div class="five wide column">
-                    <img th:src="@{/images/wechat.png}" alt="img" class="ui rounded bordered image right floated"
+                    <img th:src="@{/images/public_qrcode.jpg}" alt="img" class="ui rounded bordered image right floated"
                          style="width: 120px;">
                 </div>
             </div>

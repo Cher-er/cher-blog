@@ -84,6 +84,7 @@ public class AdminController {
         model.addAttribute("blog", blog);
         List<Type> types = typeService.getTypes();
         model.addAttribute("types", types);
+
         return "admin/blog-update";
     }
 
@@ -124,6 +125,7 @@ public class AdminController {
         Type type = typeService.getType(id);
         model.addAttribute("id", type.getId());
         model.addAttribute("name", type.getName());
+
         return "admin/type-update";
     }
 
