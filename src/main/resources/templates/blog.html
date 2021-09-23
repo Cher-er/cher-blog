@@ -91,12 +91,16 @@
 
 <div class="m-fixed m-bottom-right m-padding-small">
     <div class="ui vertical icon buttons">
+        <button class="ui toc-btn teal icon button">目录</button>
         <button class="ui qrcode-btn teal icon button m-mobile-hide">手机阅览</button>
         <button id="toHeader" class="ui teal button"><i class="angle up icon"></i></button>
     </div>
 </div>
 <!--手机阅览二维码-->
 <div id="qrcode" class="ui flowing popup transition hidden">
+
+</div>
+<div id="toc" class="ui flowing popup transition hidden">
 
 </div>
 
@@ -122,6 +126,22 @@
         on: 'click',
         position: 'left center'
     });
+
+    // 目录
+    $(".toc-btn").popup({
+        popup: $('#toc.popup'),
+        on: 'click',
+        position: 'left center'
+    });
+    tocbot.init({
+        // Where to render the table of contents.
+        tocSelector: '#toc',
+        // Where to grab the headings to build the table of contents.
+        contentSelector: '#content',
+        // Which headings to grab inside of the contentSelector element.
+        headingSelector: 'h1, h2, h3'
+    });
+
     var qrcode = new QRCode("qrcode", {
         text: window.location.href,
         width: 100,

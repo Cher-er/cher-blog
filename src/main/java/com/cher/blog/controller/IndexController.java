@@ -161,4 +161,34 @@ public class IndexController {
         return "about";
     }
 
+    @RequestMapping("/search")
+    public String search(@RequestParam("title") String title,
+                       @RequestParam("offset") Integer offset,
+                       Model model) {
+
+        List<Blog> blogs = blogService.getBlogsByTitleLikeByPage(title, offset, PAGE_LIMIT);
+        model.addAttribute("blogs", blogs);
+
+        // 翻页
+        // 计算翻页条
+        Integer count = blogService.getCountByTitleLike(title);
+        Integer maxPage = (count - 1) / PAGE_LIMIT + 1;
+        ArrayList<Integer> pages = new ArrayList<>();
+        for (int i = 0; (i <= PAGE_NUM / 2) && (offset - i > 0); i++) {
+            pages.add(0, offset - i);
+        }
+        for (int i = 1; (pages.size() < PAGE_NUM) && (offset + i <= maxPage); i++) {
+            pages.add(offset + i);
+        }
+        for (int i = PAGE_NUM / 2 + 1; pages.size() < PAGE_NUM && (offset - i >= 1); i++) {
+            pages.add(0, offset - i);
+        }
+        model.addAttribute("count", count);
+        model.addAttribute("offset", offset);
+        model.addAttribute("maxPage", maxPage);
+        model.addAttribute("pages", pages);
+
+        return "search";
+    }
+
 }

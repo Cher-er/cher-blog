@@ -80,6 +80,36 @@
         where `create_time` between #{startTime} and #{endTime}
     </select>
 
+    <!--Integer getCountByTitleLike(@Param("titleLike") String titleLike);-->
+    <select id="getCountByTitleLike" resultType="int">
+        select count(*)
+        from `t_blog`
+        where `title` like #{titleLike};
+    </select>
+
+    <!--List<Blog> getBlogsByTitleLike(@Param("titleLike") String titleLike);-->
+    <select id="getBlogsByTitleLike" resultMap="Blog">
+        select `id`,`title`,`description`,`content`,`view_count`,`pic_url`,`recommend`,`appreciate`,`status`,`create_time`,`update_time`,`statement`,`user_id`,`type_id`
+        from `t_blog`
+        where `title` like #{titleLike}
+    </select>
+
+    <!--List<Blog> getBlogsByTitleLikeAndTypeId(@Param("titleLike") String titleLike, @Param("typeId") Integer typeId);-->
+    <select id="getBlogsByTitleLikeAndTypeId" resultMap="Blog">
+        select `id`,`title`,`description`,`content`,`view_count`,`pic_url`,`recommend`,`appreciate`,`status`,`create_time`,`update_time`,`statement`,`user_id`,`type_id`
+        from `t_blog`
+        where `title` like #{titleLike}
+        and `type_id`=#{typeId}
+    </select>
+
+    <!--Integer getCountByTitleLikeAndTypeId(@Param("titleLike") String titleLike, @Param("typeId") Integer typeId);-->
+    <select id="getCountByTitleLikeAndTypeId" resultType="int">
+        select count(*)
+        from `t_blog`
+        where `title` like #{titleLike}
+        and `type_id`=#{typeId}
+    </select>
+
     <!--Boolean addBlog(Blog blog);-->
     <insert id="addBlog" useGeneratedKeys="true" keyProperty="id">
         insert into `t_blog` (`title`,`description`,`content`,`view_count`,`pic_url`,`recommend`,`appreciate`,`status`,`create_time`,`update_time`,`statement`,`user_id`,`type_id`)

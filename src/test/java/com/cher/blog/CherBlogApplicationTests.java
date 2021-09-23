@@ -291,6 +291,22 @@ class CherBlogApplicationTests {
                 }
             }
 
+            @Test
+            void getBlogsByTitleLike() {
+                List<Blog> blogs = blogService.getBlogsByTitleLike("Thy");
+                for (Blog blog : blogs) {
+                    System.out.println(blog);
+                }
+            }
+
+            @Test
+            void getBlogsByTitleLikeByPage() {
+                List<Blog> blogs = blogService.getBlogsByTitleLikeByPage("Thy", 1, 10);
+                for (Blog blog : blogs) {
+                    System.out.println(blog);
+                }
+            }
+
         }
 
     }

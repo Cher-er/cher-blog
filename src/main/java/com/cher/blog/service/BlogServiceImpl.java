@@ -35,7 +35,14 @@ public class BlogServiceImpl implements BlogService {
     }
 
     @Override
-    public List<Blog> getBlog() {
+    public List<Blog> getBlogsByTypeIdByPage(Integer typeId, Integer offset, Integer limit) {
+        PageHelper.startPage(offset, limit);
+        List<Blog> blogs = blogMapper.getBlogsByTypeId(typeId);
+        return blogs;
+    }
+
+    @Override
+    public List<Blog> getBlogs() {
         return blogMapper.getBlogs();
     }
 
@@ -63,6 +70,40 @@ public class BlogServiceImpl implements BlogService {
         String startTime = year + "-01-01";
         String endTime = year + "-12-31";
         return blogMapper.getBlogsByYear(startTime, endTime);
+    }
+
+    @Override
+    public Integer getCountByTitleLike(String titleLike) {
+        return blogMapper.getCountByTitleLike("%" + titleLike + "%");
+    }
+
+    @Override
+    public List<Blog> getBlogsByTitleLike(String titleLike) {
+        return blogMapper.getBlogsByTitleLike("%" + titleLike + "%");
+    }
+
+    @Override
+    public List<Blog> getBlogsByTitleLikeByPage(String titleLike, Integer offset, Integer limit) {
+        PageHelper.startPage(offset, limit);
+        List<Blog> blogs = blogMapper.getBlogsByTitleLike("%" + titleLike + "%");
+        return blogs;
+    }
+
+    @Override
+    public List<Blog> getBlogsByTitleLikeAndTypeId(String title, Integer typeId) {
+        return blogMapper.getBlogsByTitleLikeAndTypeId("%" + title + "%", typeId);
+    }
+
+    @Override
+    public List<Blog> getBlogsByTitleLikeAndTypeIdByPage(String title, Integer typeId, Integer offset, Integer limit) {
+        PageHelper.startPage(offset, limit);
+        List<Blog> blogs = blogMapper.getBlogsByTitleLikeAndTypeId("%" + title + "%", typeId);
+        return blogs;
+    }
+
+    @Override
+    public Integer getCountByTitleLikeAndTypeId(String title, Integer typeId) {
+        return blogMapper.getCountByTitleLikeAndTypeId("%" + title + "%", typeId);
     }
 
     @Override

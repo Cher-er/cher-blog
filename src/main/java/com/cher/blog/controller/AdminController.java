@@ -46,10 +46,30 @@ public class AdminController {
 
     @RequestMapping("/blogManage/{offset}")
     public String blogManage(@PathVariable("offset") Integer offset,
+                             @RequestParam(value = "title", required = false) String title,
+                             @RequestParam(value = "type", required = false) Integer typeId,
                              Model model) {
+
+        List<Blog> blogs = null;
+        Integer count = null;
         // 计算翻页条
-        List<Blog> blogs = blogService.getBlogsByPage(offset, PAGE_LIMIT);
-        Integer count = blogService.getCount();
+        if (typeId == null && (title == null || title.equals(""))) {
+            blogs = blogService.getBlogsByPage(offset, PAGE_LIMIT);
+            count = blogService.getCount();
+
+        } else if (typeId != null && (title == null || title.equals(""))) {
+            blogs = blogService.getBlogsByTypeIdByPage(typeId, offset, PAGE_LIMIT);
+            count = blogService.getCountByTypeId(typeId);
+
+        } else if(typeId == null && !title.equals("")) {
+            blogs = blogService.getBlogsByTitleLikeByPage(title, offset, PAGE_LIMIT);
+            count = blogService.getCountByTitleLike(title);
+
+        } else {
+            blogs = blogService.getBlogsByTitleLikeAndTypeIdByPage(title, typeId, offset, PAGE_LIMIT);
+            count = blogService.getCountByTitleLikeAndTypeId(title, typeId);
+        }
+
         Integer maxPage = (count - 1) / PAGE_LIMIT + 1;
         ArrayList<Integer> pages = new ArrayList<>();
         for (int i = 0; (i <= PAGE_NUM / 2) && (offset - i > 0); i++) {
@@ -66,6 +86,9 @@ public class AdminController {
         model.addAttribute("offset", offset);
         model.addAttribute("maxPage", maxPage);
         model.addAttribute("pages", pages);
+
+        List<Type> types = typeService.getTypes();
+        model.addAttribute("types", types);
 
         return "admin/blog-manage";
     }

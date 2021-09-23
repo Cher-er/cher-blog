@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="zh_CN" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="_fragments::head('搜索')">
+</head>
+<body>
+
+<!--导航-->
+<nav th:replace="_fragments::menu(0)"></nav>
+
+<!--中间内容-->
+<div class="m-padding-tb-big m-container-small">
+    <div class="ui container">
+        <!--header-->
+        <div class="ui segment top attached">
+            <div class="ui two column grid middle aligned">
+                <div class="column">
+                    <d3 class="ui teal header">搜索结果</d3>
+                </div>
+                <div class="column right aligned">
+                    共 <h2 class="ui orange header m-inline-block m-text-thin">[[${count}]]</h2> 篇
+                </div>
+            </div>
+        </div>
+
+        <div class="ui teal top attached segment">
+            <!--一条博客-->
+            <div th:each="blog:${blogs}" class="ui segment padded vertical m-padding-tb-large">
+                <div class="ui stackable grid mobile reversed">
+                    <div class="eleven wide column">
+                        <!--标题-->
+                        <h3 class="ui header">
+                            <a th:href="@{/blog(id=${blog.id})}" target="_blank" class="m-black" th:text="${blog.title}"></a>
+                        </h3>
+                        <!--描述-->
+                        <p class="m-text" th:text="${blog.description}"></p>
+                        <!--其他信息-->
+                        <div class="ui stackable grid">
+                            <div class="eleven wide column">
+                                <div class="ui link list horizontal mini">
+                                    <div class="item">
+                                        <!--作者头像-->
+                                        <img th:src="${blog.user.avatarUrl}" alt="img"
+                                             class="ui avatar image">
+                                        <!--作者名称-->
+                                        <div class="content">
+                                            <a href="javascript:;" class="header m-text" th:text="${blog.user.nickname}"></a>
+                                        </div>
+                                    </div>
+                                    <!--发布时间-->
+                                    <div class="item">
+                                        <i class="icon calender"></i> [[${#dates.format(blog.createTime,'yyyy-MM-dd')}]]
+                                    </div>
+                                    <!--浏览量-->
+                                    <div class="item">
+                                        <i class="icon eye" th:text="${blog.viewCount}"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--分类-->
+                            <div class="five wide column right aligned">
+                                <a th:href="@{/type(id=${blog.type.id},offset=1)}" class="ui label teal basic m-padding-tiny m-text-thin"
+                                   th:text="${blog.type.name}"></a>
+                            </div>
+                        </div>
+                    </div>
+                    <!--首图-->
+                    <div class="five wide column">
+                        <a th:href="@{/blog(id=${blog.id})}" target="_blank">
+                            <img th:src="${blog.picUrl}" alt="img" class="ui rounded image"
+                                 style="width: 160px; height: 100px;">
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--翻页-->
+        <div class="ui bottom attached segment center aligned">
+            <div class="ui pagination menu">
+                <!--上一页-->
+                <a th:if="${offset}>1" th:href="@{/type(id=${id},offset=${offset}-1)}" class="icon item">
+                    <i class="left chevron icon"></i>
+                </a>
+                <a class="item" th:each="page:${pages}" th:text="${page}" th:href="@{/type(id=${id},offset=${page})}"></a>
+                <!--下一页-->
+                <a th:if="${offset}<${maxPage}" th:href="@{/type(id=${id},offset=${offset}+1)}" class="icon item">
+                    <i class="right chevron icon"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<br>
+<br>
+
+<!--底部-->
+<footer th:replace="_fragments::footer"></footer>
+
+<th:block th:replace="_fragments::script"></th:block>
+
+<script>
+    $(".menu.toggle").click(function () {
+        $(".m-item").toggleClass("m-mobile-hide");
+    });
+</script>
+</body>
+</html>

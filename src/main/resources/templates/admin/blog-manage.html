@@ -17,7 +17,7 @@
             <p th:text="${message}"></p>
         </div>
         <!--搜索博客-->
-        <form action="#" class="ui segment form" method="post">
+        <form th:action="@{/admin/blogManage/1}" class="ui segment form" method="get">
             <div class="inline fields">
                 <!--按标题搜索-->
                 <div class="field">
@@ -30,8 +30,7 @@
                         <i class="dropdown icon"></i>
                         <div class="default text">分类</div>
                         <div class="menu">
-                            <div class="item" data-value="1">错误日志</div>
-                            <div class="item" data-value="2">开发手册</div>
+                            <div th:each="type:${types}" th:text="${type.name}" class="item" th:data-value="${type.id}"></div>
                         </div>
                     </div>
                 </div>
@@ -48,7 +47,7 @@
             <tr>
                 <th class="m-text-align">序号</th>
                 <th>标题</th>
-                <th>类型</th>
+                <th>类别</th>
                 <th>推荐</th>
                 <th>更新时间</th>
                 <th>操作</th>

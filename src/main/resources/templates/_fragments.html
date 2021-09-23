@@ -10,6 +10,8 @@
     <link rel="stylesheet" th:href="@{/css/me.css}">
     <link rel="stylesheet" th:href="@{/css/typo.css}">
     <link rel="stylesheet" th:href="@{/css/prism.css}">
+    <link rel="stylesheet" th:href="@{/lib/layui/css/layui.css}">
+    <link rel="stylesheet" th:href="@{/lib/tocbot/tocbot.css}">
 </head>
 <body>
 
@@ -19,7 +21,7 @@
     <div class="ui container">
         <div class="ui inverted secondary menu stackable">
             <!--标题-->
-            <h2 class="ui header teal m-margin-lr">Cher's Blog</h2>
+            <h2 class="ui header teal m-margin-lr center aligned">Cher's Blog</h2>
             <!--导航栏-->
             <a th:href="@{/index}" class="item m-item m-mobile-hide" th:classappend="${n==1}?'active'"><i class="icon home small"></i>首页</a>
             <a th:href="@{/type(id=1,offset=1)}" class="item m-item m-mobile-hide" th:classappend="${n==2}?'active'"><i class="icon idea small"></i>分类</a>
@@ -27,11 +29,15 @@
             <a th:href="@{/about}" class="item m-item m-mobile-hide" th:classappend="${n==4}?'active'"><i class="icon info small"></i>关于我</a>
             <!--搜索框-->
             <div class="right item m-item m-mobile-hide">
-                <div class="ui icon input">
-                    <input type="text" placeholder="Search...">
-                    <i class="icon search link"></i>
-                </div>
+                <form th:action="@{/search}" method="get" name="searchForm">
+                    <div class="ui icon input">
+                        <input type="hidden" name="offset" value="1">
+                        <input type="text" placeholder="Search..." name="title">
+                        <i class="icon search link"></i>
+                    </div>
+                </form>
             </div>
+
         </div>
     </div>
     <!--菜单栏-->
@@ -71,7 +77,9 @@
             <!--介绍-->
             <div class="five wide column">
                 <h4 class="ui inverted header m-text-spaced m-text-thin m-opacity-mini">掰扯掰扯</h4>
-                <p class="m-text-spaced m-text-thin m-opacity-mini">这是我的个人博客，会分享关于编程相关的内容，希望可以给来到这儿的人帮助...</p>
+                <p class="m-text-spaced m-text-thin m-opacity-mini">我叫Cher，这是我的个人博客。</p>
+                <p class="m-text-spaced m-text-thin m-opacity-mini">我会分享关于编程相关的内容(也可能会有别的)。</p>
+                <p class="m-text-spaced m-text-thin m-opacity-mini">希望可以给来到这儿的人帮助......</p>
             </div>
         </div>
         <div class="ui inserted section divider"></div>
@@ -93,10 +101,16 @@
     <script th:src="@{/js/qrcode.min.js}"></script>
     <script th:src="@{/js/jquery.scrollTo.min.js}"></script>
     <script th:src="@{/js/prism.js}"></script>
+    <script th:src="@{/lib/layui/layui.js}"></script>
+    <script th:src="@{/lib/tocbot/tocbot.min.js}"></script>
     <script>
         $(".menu.toggle").click(function () {
             $(".m-item").toggleClass("m-mobile-hide");
         });
+
+        $(".search.link").click(function () {
+            document.searchForm.submit();
+        })
     </script>
 </th:block>
 

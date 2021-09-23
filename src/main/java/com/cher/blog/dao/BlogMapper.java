@@ -28,6 +28,16 @@ public interface BlogMapper {
     List<Blog> getBlogsByYear(@Param("startTime") String startTime,
                               @Param("endTime") String endTime);
 
+    Integer getCountByTitleLike(@Param("titleLike") String titleLike);
+
+    List<Blog> getBlogsByTitleLike(@Param("titleLike") String titleLike);
+
+    List<Blog> getBlogsByTitleLikeAndTypeId(@Param("titleLike") String titleLike,
+                                            @Param("typeId") Integer typeId);
+
+    Integer getCountByTitleLikeAndTypeId(@Param("titleLike") String titleLike,
+                                         @Param("typeId") Integer typeId);
+
     Boolean addBlog(Blog blog);
 
     Boolean updateBlog(Blog blog);
