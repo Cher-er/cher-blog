@@ -311,26 +311,4 @@ class CherBlogApplicationTests {
 
     }
 
-    @DisplayName("CommonMark Test")
-    @Nested
-    class CommonMarkTest {
-
-        @Autowired
-        BlogService blogService;
-
-        @Test
-        void test() {
-            Blog blog = blogService.getBlog(1);
-            String content = blog.getContent();
-            System.out.println(content);
-
-            Parser parser = Parser.builder().build();
-            Node document = parser.parse(content);
-            HtmlRenderer renderer = HtmlRenderer.builder().build();
-            String render = renderer.render(document);
-            System.out.println(render);
-        }
-
-    }
-
 }
