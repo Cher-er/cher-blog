@@ -78,7 +78,7 @@ public class IndexController {
     public String blog(@RequestParam("id") Integer id, Model model) {
 
         Blog blog = blogService.getBlog(id);
-        blog.setViewCount(blog.getViewCount()+1);
+        blogService.updateBlog(new Blog(blog.getId(), blog.getViewCount()+1));
         model.addAttribute("blog", blog);
 
         User user = blog.getUser();
