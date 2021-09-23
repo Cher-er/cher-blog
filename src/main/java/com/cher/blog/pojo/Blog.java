@@ -24,6 +24,11 @@ public class Blog implements Serializable {
     public Blog() {
     }
 
+    public Blog(Integer id, Integer viewCount) {
+        this.id = id;
+        this.viewCount = viewCount;
+    }
+
     public Integer getId() {
         return id;
     }
