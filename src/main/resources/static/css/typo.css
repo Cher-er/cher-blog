@@ -93,8 +93,14 @@ address, caption, cite, code, dfn, em, th, var {
 }
 
 /* 去掉列表前的标识, li 会继承，大部分网站通常用列表来很多内容，所以应该当去 */
-ul, ol {
-    list-style: none;
+/*ul, ol {*/
+    /*list-style: none;*/
+/*}*/
+ul > li {
+    list-style: disc;
+}
+ol > li {
+    list-style: number;
 }
 
 /* 对齐是排版最重要的因素, 别让什么都居中 */
