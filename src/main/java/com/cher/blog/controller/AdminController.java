@@ -40,9 +40,14 @@ public class AdminController {
     @Autowired
     private BlogService blogService;
 
-    @RequestMapping({"", "/", "/login"})
+    @RequestMapping("/login")
     public String login(Model model) {
         return "admin/login";
+    }
+
+    @RequestMapping({"", "/"})
+    public String index() {
+        return "redirect:/admin/blogManage/1";
     }
 
     @RequestMapping("/blogManage/{offset}")
@@ -178,7 +183,7 @@ public class AdminController {
             session.setAttribute("user", user);
             return "redirect:/admin/blogManage/1";
         }
-        return "redirect:/admin";
+        return "redirect:/admin/login";
     }
 
     /**
@@ -187,7 +192,7 @@ public class AdminController {
     @RequestMapping("/doLogout")
     public String doLogout(HttpSession session) {
         session.removeAttribute("user");
-        return "redirect:/admin";
+        return "redirect:/admin/login";
     }
 
     /**
