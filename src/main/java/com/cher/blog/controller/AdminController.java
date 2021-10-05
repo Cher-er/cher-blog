@@ -6,6 +6,7 @@ import com.cher.blog.pojo.User;
 import com.cher.blog.service.BlogService;
 import com.cher.blog.service.TypeService;
 import com.cher.blog.service.UserService;
+import com.cher.blog.utils.MD5Utils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -167,7 +168,7 @@ public class AdminController {
             logger.info("登陆失败，用户名不存在：" + username);
             attributes.addFlashAttribute("message", "用户名不存在");
 
-        } else if (!password.equals(user.getPassword())) {
+        } else if (!MD5Utils.code(password).equals(user.getPassword())) {
             // 用户密码错误
             logger.info("登陆失败，密码输入错误：" + username + ":" + password);
             attributes.addFlashAttribute("message", "密码输入错误");
