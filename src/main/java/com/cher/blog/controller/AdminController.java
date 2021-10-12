@@ -265,14 +265,21 @@ public class AdminController {
      */
     @RequestMapping("/doTypeDelete")
     public String doTypeDelete(@RequestParam("id") Integer id, RedirectAttributes attributes) {
-        Boolean res = typeService.deleteType(id);
 
-        if (res) {
-            attributes.addFlashAttribute("message", "删除分类成功");
-
-        } else {
+        List<Blog> blogs = blogService.getBlogsByTypeId(id);
+        if (blogs.size() != 0) {
             attributes.addFlashAttribute("message", "删除分类失败");
 
+        } else {
+            Boolean res = typeService.deleteType(id);
+
+            if (res) {
+                attributes.addFlashAttribute("message", "删除分类成功");
+
+            } else {
+                attributes.addFlashAttribute("message", "删除分类失败");
+
+            }
         }
 
         return "redirect:/admin/typeManage/1";
